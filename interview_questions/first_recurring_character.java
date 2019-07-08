@@ -1,3 +1,6 @@
+/* Question: write a function that returns the first reccurring character in a string of letters
+ * If there are no repeating characters, the function should return null/none */
+
 import java.util.HashMap;
 import java.util.Map;
 
