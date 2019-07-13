@@ -21,7 +21,7 @@ public class sorting {
 		arr = bubble(arr);	
 		arr2 = selection(arr2);	
 		arr3 = insertion(arr3);	
-		arr4 = quick(arr4, arr4[0], arr4[arr4.length-1]);
+		arr4 = quick(arr4, 0, arr4.length);
 		System.out.println("Bubble:");
 		System.out.println(Arrays.toString(arr) + "\n");
 		System.out.println("Selection:");
@@ -77,17 +77,30 @@ public class sorting {
 	public static int[] quick (int[] arr, int low, int high) {
 		if (low < high) {
 			int finalPosition = partition(arr, low, high);
-			quick(arr, low, finalPosition-1);
+			quick(arr, low, finalPosition);
 			quick(arr, finalPosition+1, high);
 		}	
 		return arr;
 	}
 
 
-	public static int[] partition (int[] arr, int low, int high) {
-		for (int i = low; i < high; i++) {
-
+	public static int partition (int[] arr, int low, int high) {
+		int index = low+1;
+		for (int i = index+1; i < high; i++) {
+			if (arr[i] < arr[low]) {
+				// swap arr[i] and arr[index]
+				int temp = arr[i];
+				arr[i] = arr[index];
+				arr[index] = temp;
+				index++;
+			}	
 		}
+		index--;
+		// swap low with index
+		int temp = arr[low];
+		arr[low] = arr[index];
+		arr[index] = temp;
+		return index;
 	}
 	 
 }
